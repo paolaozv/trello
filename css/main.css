@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box;
+	font-family: "Lobster Two";
+}
+
+body {
+	background-image: url("../img/");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#contenedor {
+	margin-left: 40px;
+	margin-top: 40px;
+}
+
+#box {
+	padding: 10px;
+	background-color: #5E8DA9;
+	display: inline-block;
+	width: 240px;
+	height: 40px;
+	border-radius: 4px;
+	color: #FFF;
+}
+
+#box:hover {
+	background-color: #006BA9;
+}
+
+.boton {
+	display: inline-block;
+	margin: 5px 0px;
+	width: 80px;
+	height: 37px;
+	padding: 4px;
+	background-color: #5EB64B;
+	border: none;
+	border-radius: 4px;
+	color: #FFF;
+}
+
+.caja {
+	display: inline-block;
+	padding: 6px;
+	background-color: #E2E4E6;
+	width: 240px;
+	border-radius: 4px;
+}
+
+.write {
+	background-color: #D4D6D8;
+	width: 228px;
+	border-radius: 4px;
+	border: none;
+	height: 32px;
+	margin-bottom: 3px;
+}
+
+.iconPosition {
+	margin-left: 8px;
+	font-size: 20px;
+	color: #999999;
+}
