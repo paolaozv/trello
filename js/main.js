@@ -6,11 +6,12 @@ window.addEventListener("load", function() {
     var formulario = document.getElementById("formulario");
     var entrada = document.getElementById("entrada");
     var boton = document.getElementById("boton");
-    
+
     box.addEventListener("click", function() {
         this.style.display = "none";
         formulario.style.display = "block";
         this.parentElement.classList.add("caja");
+        entrada.focus();
     });
         
     boton.addEventListener("click", function(e) {
@@ -36,6 +37,10 @@ window.addEventListener("load", function() {
         box.parentElement.insertBefore(enlace, box.parentElement.childNodes[1]);
         enlace.classList.add("enlace");
         enlace.setAttribute("href", "#");
+
+        enlace.addEventListener("click", function() {
+            addTextArea(this);
+        });
     }
 
     function addSection() {
@@ -48,4 +53,29 @@ window.addEventListener("load", function() {
         box.style.display = "block";
         contenedorDerecha.insertBefore(formulario, contenedorDerecha.childNodes[0]);
     }
-});                     
+
+    function addTextArea(enlace) {
+        console.log(enlace);
+        enlace.style.display = "none";
+        var formTextArea = document.createElement("form");
+        enlace.parentElement.appendChild(formTextArea);
+        var textArea = document.createElement("textarea");
+        formTextArea.insertBefore(textArea, formTextArea.childNodes[0]);
+        textArea.classList.add("textTarget");
+        var botonText = document.createElement("button");
+        formTextArea.insertBefore(botonText, formTextArea.childNodes[1]);
+        var textoBoton = document.createTextNode("Añadir");
+        botonText.appendChild(textoBoton);
+        botonText.classList.add("button");
+        botonText.setAttribute("type", "submit");
+        textArea.focus();
+    }
+
+});           
+   
+
+
+        
+              
+
+
