@@ -19,6 +19,8 @@ window.addEventListener("load", function() {
 
         addText();
         addSection();
+        box.parentElement.classList.add("position");
+
     });
 
     function addText() {
@@ -55,7 +57,6 @@ window.addEventListener("load", function() {
     }
 
     function addTextArea(enlace) {
-        console.log(enlace);
         enlace.style.display = "none";
         var formTextArea = document.createElement("form");
         enlace.parentElement.appendChild(formTextArea);
@@ -69,6 +70,18 @@ window.addEventListener("load", function() {
         botonText.classList.add("button");
         botonText.setAttribute("type", "submit");
         textArea.focus();
+
+        botonText.addEventListener("click", function(e) {
+            e.preventDefault();
+            var textoDiv = textArea.value;
+            var div = document.createElement("div");
+            div.innerHTML = textoDiv;
+            formTextArea.style.display = "none";
+            enlace.parentElement.appendChild(div);
+            div.classList.add("divBorder");
+            div.parentElement.appendChild(enlace);
+            enlace.style.display = "block";
+        });
     }
 
 });           
