@@ -13,12 +13,14 @@ body {
 }
 
 #section {
-	padding-top: 20px;
 	padding-left: 40px;
 }
 
 #contenedor {
 	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	top: 25px;
 }
 
 #box {
@@ -67,11 +69,12 @@ body {
 
 .titulo {
 	padding-left: 10px;
-	margin-bottom: 11px;
+	padding-bottom: 10px;
 	font-size: 16px;
 }
 
 .enlace {
+	padding-top: 11px;
 	padding-left: 10px;
 	font-size: 16px;
 }
@@ -79,6 +82,7 @@ body {
 .contenedorDerecha {
 	display: inline-block;
 	margin-left: 10px;
+	vertical-align: top;
 }
 
 .textTarget {
@@ -91,7 +95,7 @@ body {
 
 .position {
 	position: relative;
-	top: 20px;
+	top: 25px;
 }
 
 .divBorder {
