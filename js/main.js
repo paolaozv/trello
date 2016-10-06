@@ -1,4 +1,6 @@
-window.addEventListener("load", function() {
+;(function() {
+
+    window.addEventListener("load", cargar);
 
     var section = document.getElementById("section");
     var contenedor = document.getElementById("contenedor");
@@ -6,24 +8,24 @@ window.addEventListener("load", function() {
     var formulario = document.getElementById("formulario");
     var entrada = document.getElementById("entrada");
     var boton = document.getElementById("boton");
+    var contador = 1;
 
-    box.addEventListener("click", function() {
+    function cargar() {
+        box.addEventListener("click", addFormulario);
+        boton.addEventListener("click", addText);
+        boton.addEventListener("click", addSection);
+    }
+
+    function addFormulario() {
         this.style.display = "none";
         formulario.style.display = "block";
         this.parentElement.classList.add("caja");
         entrada.focus();
-    });
-        
-    boton.addEventListener("click", function(e) {
+    }
+
+    function addText(e) {
         e.preventDefault();
 
-        addText();
-        addSection();
-        box.parentElement.classList.add("position");
-
-    });
-
-    function addText() {
         formulario.style.display = "none";
 
         var texto = entrada.value;
@@ -40,12 +42,17 @@ window.addEventListener("load", function() {
         enlace.classList.add("enlace");
         enlace.setAttribute("href", "#");
 
+        box.parentElement.addEventListener("dragover", arrastrarSobre);
+        box.parentElement.addEventListener("drop", soltar);
+
         enlace.addEventListener("click", function() {
             addTextArea(this);
         });
     }
 
-    function addSection() {
+    function addSection(e) {
+        e.preventDefault();
+
         var contenedorDerecha = document.createElement("div");
         section.appendChild(contenedorDerecha);
 
@@ -54,6 +61,7 @@ window.addEventListener("load", function() {
         contenedorDerecha.appendChild(box);
         box.style.display = "block";
         contenedorDerecha.insertBefore(formulario, contenedorDerecha.childNodes[0]);
+        box.parentElement.classList.add("position");
     }
 
     function addTextArea(enlace) {
@@ -81,14 +89,24 @@ window.addEventListener("load", function() {
             div.classList.add("divBorder");
             div.parentElement.appendChild(enlace);
             enlace.style.display = "block";
+            div.id = "tarjeta" + contador;
+            div.setAttribute("draggable", "true");
+            div.addEventListener("dragstart", empiezaArrastrar);
+            contador++;
         });
     }
 
-});           
-   
+    function empiezaArrastrar(e) {
+        e.dataTransfer.setData("text", this.id);
+    }
 
+    function arrastrarSobre(e) {
+        e.preventDefault();
+    }
 
-        
-              
+    function soltar(e) {
+        var idArrastrado = e.dataTransfer.getData("text");
+        this.insertBefore(document.getElementById(idArrastrado), this.lastElementChild);
+    }
 
-
+})();
