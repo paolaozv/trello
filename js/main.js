@@ -42,6 +42,7 @@
         enlace.classList.add("enlace");
         enlace.setAttribute("href", "#");
 
+        box.parentElement.addEventListener("dragenter", entraArrastrar);
         box.parentElement.addEventListener("dragover", arrastrarSobre);
         box.parentElement.addEventListener("drop", soltar);
 
@@ -96,6 +97,7 @@
         div.setAttribute("draggable", "true");
         
         div.addEventListener("dragstart", empiezaArrastrar);
+        div.addEventListener("dragleave", dejaArrastrar);
         div.addEventListener("dragend", terminaArrastrar);
         contador++;
     }
@@ -112,10 +114,19 @@
     function soltar(e) {
         var idArrastrado = e.dataTransfer.getData("text");
         this.insertBefore(document.getElementById(idArrastrado), this.lastElementChild);
+        this.classList.remove("bordeColor");
     }
 
     function terminaArrastrar(e) {
         this.classList.remove("color");
+    }
+
+    function entraArrastrar(e) {
+        this.classList.add("bordeColor");
+    }
+
+    function dejaArrastrar(e) {
+        this.parentElement.classList.remove("bordeColor");
     }
 
 })();
