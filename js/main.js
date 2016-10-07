@@ -105,6 +105,7 @@
     function empiezaArrastrar(e) {
         e.dataTransfer.setData("text", this.id);
         this.classList.add("color");
+        this.classList.remove("shake", "animated");
     }
 
     function arrastrarSobre(e) {
@@ -115,6 +116,7 @@
         var idArrastrado = e.dataTransfer.getData("text");
         this.insertBefore(document.getElementById(idArrastrado), this.lastElementChild);
         this.classList.remove("bordeColor");
+        this.classList.add("shake", "animated");
     }
 
     function terminaArrastrar(e) {
@@ -127,6 +129,7 @@
 
     function dejaArrastrar(e) {
         this.parentElement.classList.remove("bordeColor");
+        this.parentElement.classList.remove("shake", "animated");
     }
 
 })();

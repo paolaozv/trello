@@ -1,6 +1,5 @@
 * {
 	box-sizing: border-box;
-	font-family: "Lobster Two";
 }
 
 body {
@@ -14,6 +13,7 @@ body {
 
 #section {
 	padding-left: 40px;
+	font-family: "Lobster Two";
 }
 
 #contenedor {
@@ -111,4 +111,13 @@ body {
 
 .bordeColor {
 	background-color: rgba(0, 255, 255, 0.2);
+}
+
+.backgroundColor {
+	height: auto;
+	width: 100%;
+}
+
+nav {
+	background-color: #0067A3;
 }
