@@ -45,9 +45,7 @@
         box.parentElement.addEventListener("dragover", arrastrarSobre);
         box.parentElement.addEventListener("drop", soltar);
 
-        enlace.addEventListener("click", function() {
-            addTextArea(this);
-        });
+        enlace.addEventListener("click", addTextArea);
     }
 
     function addSection(e) {
@@ -64,10 +62,10 @@
         box.parentElement.classList.add("position");
     }
 
-    function addTextArea(enlace) {
-        enlace.style.display = "none";
+    function addTextArea() {
+        this.style.display = "none";
         var formTextArea = document.createElement("form");
-        enlace.parentElement.appendChild(formTextArea);
+        this.parentElement.appendChild(formTextArea);
         var textArea = document.createElement("textarea");
         formTextArea.insertBefore(textArea, formTextArea.childNodes[0]);
         textArea.classList.add("textTarget");
@@ -79,25 +77,32 @@
         botonText.setAttribute("type", "submit");
         textArea.focus();
 
-        botonText.addEventListener("click", function(e) {
-            e.preventDefault();
-            var textoDiv = textArea.value;
-            var div = document.createElement("div");
-            div.innerHTML = textoDiv;
-            formTextArea.style.display = "none";
-            enlace.parentElement.appendChild(div);
-            div.classList.add("divBorder");
-            div.parentElement.appendChild(enlace);
-            enlace.style.display = "block";
-            div.id = "tarjeta" + contador;
-            div.setAttribute("draggable", "true");
-            div.addEventListener("dragstart", empiezaArrastrar);
-            contador++;
-        });
+        botonText.addEventListener("click", addForm);
+    }
+
+    function addForm(e) {
+        e.preventDefault();
+
+        var textoDiv = this.previousSibling.value;
+        var div = document.createElement("div");
+        div.innerHTML = textoDiv;
+        this.parentElement.style.display = "none";
+        var parentButton = this.parentElement;
+        parentButton.parentElement.appendChild(div);
+        div.classList.add("divBorder");
+        div.parentElement.appendChild(parentButton.previousElementSibling);
+        parentButton.parentElement.lastChild.style.display = "block";
+        div.id = "tarjeta" + contador;
+        div.setAttribute("draggable", "true");
+        
+        div.addEventListener("dragstart", empiezaArrastrar);
+        div.addEventListener("dragend", terminaArrastrar);
+        contador++;
     }
 
     function empiezaArrastrar(e) {
         e.dataTransfer.setData("text", this.id);
+        this.classList.add("color");
     }
 
     function arrastrarSobre(e) {
@@ -107,6 +112,10 @@
     function soltar(e) {
         var idArrastrado = e.dataTransfer.getData("text");
         this.insertBefore(document.getElementById(idArrastrado), this.lastElementChild);
+    }
+
+    function terminaArrastrar(e) {
+        this.classList.remove("color");
     }
 
 })();
