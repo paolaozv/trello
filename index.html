@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="shortcut icon" href="trello.ico">
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -15,17 +15,24 @@
     </head>
     <body>
         <nav>
-            <img class="backgroundColor" src="img/nav.png">
-        </nav>
-        <div class="container-fluid">
-            <div id="section">
-                <div id="contenedor">
-                    <form id="formulario" class="none">
-                        <input type="text" id="entrada" class="write" placeholder="Añadir una lista...">
-                        <button type="submit" id="boton" class="button">Guardar</button>
+            <div class="container-fluid">
+                <div class="text-center">
+                    <div class="tablero inline-block"><a class="white" href="#">Tableros</a></div>
+                    <form>
+                        <input type="text" placeholder="Buscar..." class="inline-block buscar">
                     </form>
-                    <span id="box">Añadir una lista...</span>
+                    <div class="logo inline-block"><img src="img/header-logo.png" alt="trello"></div>
+                    <div class="inline-block pull-right usuario"><a class="white" href="#">Paola Ortiz de Zevallos Villanueva</a></div>
                 </div>
+            </div>
+        </nav>
+        <div id="section">
+            <div id="contenedor">
+                <form id="formulario" class="none">
+                    <input type="text" id="entrada" class="write" placeholder="Añadir una lista...">
+                    <button type="submit" id="boton" class="button">Guardar</button>
+                </form>
+                <span id="box">Añadir una lista...</span>
             </div>
         </div>
         <!-- Javascript -->

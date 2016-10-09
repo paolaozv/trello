@@ -25,7 +25,7 @@ body {
 
 #box {
 	padding: 10px;
-	background-color: #5E8DA9;
+	background-color: #4C94BF;
 	display: inline-block;
 	width: 240px;
 	height: 40px;
@@ -120,4 +120,51 @@ body {
 
 nav {
 	background-color: #0067A3;
+	height: 45px;
+	padding: 8px;
+}
+
+.inline-block {
+	display: inline-block;
+	float: left;
+}
+
+.tablero {
+	border-radius: 5px;
+	height: 30px;
+	background-color: #4C94BF;
+	width: 5%;
+	padding-top: 5px;
+	margin-right: 9px;
+}
+
+.buscar {
+	border: none;
+	border-radius: 4px;
+	padding: 4px;
+	background-color: #4C94BF;
+}
+
+.white {
+	color: #FFF;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.usuario {
+	background-color: #4C94BF;
+	border-radius: 5px;
+	height: 30px;
+	padding: 4px;
+}
+
+.logo {
+	position: relative;
+	left: 370px;
+}
+
+*::-webkit-input-placeholder {
+    color: #FFF;
 }

@@ -28,7 +28,7 @@
 
         formulario.style.display = "none";
 
-        var texto = entrada.value;
+        var texto = entrada.value.trim();
         var titulo = document.createElement("div");
         titulo.innerHTML = texto;
         box.parentElement.insertBefore(titulo, box.parentElement.childNodes[0]);
@@ -84,7 +84,7 @@
     function addForm(e) {
         e.preventDefault();
 
-        var textoDiv = this.previousSibling.value;
+        var textoDiv = this.previousSibling.value.trim();
         var div = document.createElement("div");
         div.innerHTML = textoDiv;
         this.parentElement.style.display = "none";
@@ -105,7 +105,10 @@
     function empiezaArrastrar(e) {
         e.dataTransfer.setData("text", this.id);
         this.classList.add("color");
-        this.classList.remove("shake", "animated");
+        var remove = document.getElementsByClassName("animated");
+        for(var i = 0, longitud = remove.length; i < longitud; i++) {
+            remove[i].classList.remove("animated", "shake");
+        }
     }
 
     function arrastrarSobre(e) {
@@ -115,12 +118,16 @@
     function soltar(e) {
         var idArrastrado = e.dataTransfer.getData("text");
         this.insertBefore(document.getElementById(idArrastrado), this.lastElementChild);
-        this.classList.remove("bordeColor");
         this.classList.add("shake", "animated");
+        var remove = document.getElementsByClassName("bordeColor");
+        for(var i = 0, longitud = remove.length; i < longitud; i++) {
+            remove[i].classList.remove("bordeColor");
+        }
     }
 
     function terminaArrastrar(e) {
         this.classList.remove("color");
+        this.parentElement.classList.remove("bordeColor");
     }
 
     function entraArrastrar(e) {
@@ -129,7 +136,6 @@
 
     function dejaArrastrar(e) {
         this.parentElement.classList.remove("bordeColor");
-        this.parentElement.classList.remove("shake", "animated");
     }
 
 })();
