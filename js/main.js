@@ -21,6 +21,8 @@
         formulario.style.display = "block";
         this.parentElement.classList.add("caja");
         entrada.focus();
+        entrada.addEventListener("keyup", validarTexto);
+        boton.disabled = true;
     }
 
     function addText(e) {
@@ -28,9 +30,9 @@
 
         formulario.style.display = "none";
 
-        var texto = entrada.value.trim();
+        var texto = entrada.value;
         var titulo = document.createElement("div");
-        titulo.innerHTML = texto;
+        titulo.textContent = texto;
         box.parentElement.insertBefore(titulo, box.parentElement.childNodes[0]);
         titulo.classList.add("titulo");
         entrada.value = "";
@@ -72,6 +74,8 @@
         textArea.classList.add("textTarget");
         var botonText = document.createElement("button");
         formTextArea.insertBefore(botonText, formTextArea.childNodes[1]);
+        botonText.disabled = true;
+        textArea.addEventListener("keyup", validarTexto);
         var textoBoton = document.createTextNode("Añadir");
         botonText.appendChild(textoBoton);
         botonText.classList.add("button");
@@ -136,6 +140,15 @@
 
     function dejaArrastrar(e) {
         this.parentElement.classList.remove("bordeColor");
+    }
+
+    function validarTexto() {
+        var mensaje = this.value.trim();
+        if (mensaje.length == 0) {
+            this.nextElementSibling.disabled = true;
+        } else {
+            this.nextElementSibling.disabled = false;
+        }
     }
 
 })();
