@@ -12,8 +12,9 @@ body {
 }
 
 #section {
-	padding-left: 40px;
+	padding-left: 20px;
 	font-family: "Lobster Two";
+	margin-top: 50px;
 }
 
 #contenedor {
@@ -122,6 +123,10 @@ nav {
 	background-color: #0067A3;
 	height: 45px;
 	padding: 8px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
 }
 
 .inline-block {

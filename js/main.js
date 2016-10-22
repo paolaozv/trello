@@ -151,4 +151,13 @@
         }
     }
 
+    function existeTexto(mensaje) {
+        mensaje = mensaje.trim();
+        if (mensaje.length == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 })();
