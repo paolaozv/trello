@@ -12,74 +12,73 @@
 
     function cargar() {
         box.addEventListener("click", addFormulario);
-        boton.addEventListener("click", addText);
-        boton.addEventListener("click", addSection);
+        boton.addEventListener("click", addTitle);
     }
 
     function addFormulario() {
         this.style.display = "none";
         formulario.style.display = "block";
-        this.parentElement.classList.add("caja");
+        this.parentElement.classList.add("box-style");
         entrada.focus();
         entrada.addEventListener("keyup", validarTexto);
         boton.disabled = true;
     }
 
-    function addText(e) {
+    function addTitle(e) {
         e.preventDefault();
 
-        formulario.style.display = "none";
+        if (existeTexto(entrada.value)) {
+        
+            formulario.style.display = "none";
 
-        var texto = entrada.value;
-        var titulo = document.createElement("div");
-        titulo.textContent = texto;
-        box.parentElement.insertBefore(titulo, box.parentElement.childNodes[0]);
-        titulo.classList.add("titulo");
-        entrada.value = "";
+            var texto = entrada.value;
+            var titulo = document.createElement("div");
+            titulo.classList.add("titulo");
+            titulo.textContent = texto;
+            box.parentElement.insertBefore(titulo, box.parentElement.childNodes[0]);
+            entrada.value = "";
 
-        var enlace = document.createElement("a");
-        var textoEnlace = document.createTextNode("Añadir una tarjeta...");
-        enlace.appendChild(textoEnlace);
-        box.parentElement.insertBefore(enlace, box.parentElement.childNodes[1]);
-        enlace.classList.add("enlace");
-        enlace.setAttribute("href", "#");
+            var enlace = document.createElement("a");
+            enlace.setAttribute("href", "#");
+            enlace.classList.add("enlace");
+            var textoEnlace = document.createTextNode("Añadir una tarjeta...");
+            enlace.appendChild(textoEnlace);
+            box.parentElement.insertBefore(enlace, box.parentElement.childNodes[1]);
 
-        box.parentElement.addEventListener("dragenter", entraArrastrar);
-        box.parentElement.addEventListener("dragover", arrastrarSobre);
-        box.parentElement.addEventListener("drop", soltar);
+            enlace.addEventListener("click", addTextArea);
 
-        enlace.addEventListener("click", addTextArea);
-    }
+            box.parentElement.addEventListener("dragenter", entraArrastrar);
+            box.parentElement.addEventListener("dragover", arrastrarSobre);
+            box.parentElement.addEventListener("drop", soltar);
 
-    function addSection(e) {
-        e.preventDefault();
-
-        var contenedorDerecha = document.createElement("div");
-        section.appendChild(contenedorDerecha);
-
-        contenedorDerecha.classList.add("contenedorDerecha");
-
-        contenedorDerecha.appendChild(box);
-        box.style.display = "block";
-        contenedorDerecha.insertBefore(formulario, contenedorDerecha.childNodes[0]);
-        box.parentElement.classList.add("position");
+            var contenedorDerecha = document.createElement("div");
+            contenedorDerecha.classList.add("contenedorDerecha");
+            section.appendChild(contenedorDerecha);
+            contenedorDerecha.appendChild(box);
+            box.parentElement.classList.add("position");
+            box.style.display = "block";
+            contenedorDerecha.insertBefore(formulario, contenedorDerecha.childNodes[0]);
+        }
     }
 
     function addTextArea() {
         this.style.display = "none";
         var formTextArea = document.createElement("form");
         this.parentElement.appendChild(formTextArea);
+
         var textArea = document.createElement("textarea");
-        formTextArea.insertBefore(textArea, formTextArea.childNodes[0]);
         textArea.classList.add("textTarget");
+        formTextArea.insertBefore(textArea, formTextArea.childNodes[0]);
+
         var botonText = document.createElement("button");
+        botonText.setAttribute("type", "submit");
+        botonText.classList.add("button");
         formTextArea.insertBefore(botonText, formTextArea.childNodes[1]);
         botonText.disabled = true;
+        
         textArea.addEventListener("keyup", validarTexto);
         var textoBoton = document.createTextNode("Añadir");
         botonText.appendChild(textoBoton);
-        botonText.classList.add("button");
-        botonText.setAttribute("type", "submit");
         textArea.focus();
 
         botonText.addEventListener("click", addForm);
@@ -90,12 +89,14 @@
 
         var textoDiv = this.previousSibling.value.trim();
         var div = document.createElement("div");
-        div.innerHTML = textoDiv;
+        div.textContent = textoDiv;
+        div.classList.add("divBorder");
         this.parentElement.style.display = "none";
+        
         var parentButton = this.parentElement;
         parentButton.parentElement.appendChild(div);
-        div.classList.add("divBorder");
         div.parentElement.appendChild(parentButton.previousElementSibling);
+
         parentButton.parentElement.lastChild.style.display = "block";
         div.id = "tarjeta" + contador;
         div.setAttribute("draggable", "true");
